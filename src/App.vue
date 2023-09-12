@@ -18,10 +18,12 @@ import { ref, computed } from "vue";
 import Home from "./components/HelloWorld.vue";
 import About from "./components/About.vue";
 import NotFound from "./NotFound.vue";
+import LifeCycle from "./components/LifeCycle.vue";
 
 const routes = {
   "/": Home,
   "/about": About,
+  "/life-cycle": LifeCycle,
 };
 
 const currentPath = ref(window.location.hash);
@@ -38,6 +40,7 @@ const currentView = computed(() => {
 <template>
   <div class="nav-container">
     <a href="#/">Home</a> | <a href="#/about">About</a> |
+    <a href="#/life-cycle">LifeCycle</a> |
     <a href="#/non-existent-path">Broken Link</a>
   </div>
   <div class="content-container">
@@ -50,8 +53,12 @@ const currentView = computed(() => {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
+}
+
+a {
+  text-decoration: none;
 }
 
 .nav-container {
