@@ -10,13 +10,11 @@ export default {
 <script setup>
 import { ref, reactive, computed } from "vue";
 
+const textInput = ref("");
 const isShow = ref(true);
 const toggle = () => {
   isShow.value = !isShow.value;
 };
-
-const textInput = ref("");
-// console.log(textInput);
 
 // v-for
 let id = 0;
@@ -27,7 +25,6 @@ const todos = ref([
   { id: id++, text: "Learn JavaScript", done: true },
   { id: id++, text: "Learn Vue", done: false },
 ]);
-
 // console.log(todos.value);
 
 const filteredTodos = computed(() => {
@@ -83,7 +80,7 @@ const even = (numbers) => {
         <p v-else>Show False</p>
       </div>
       <div class="showText">
-        <h3 style="margin-bottom;: 15px">
+        <h3 style="margin-bottom: 15px">
           Nhập a Hiện A, nhập b sẽ hiện B , nhập c sẽ hiện C, nhập khác hiện
           những j nhập
         </h3>

@@ -52,6 +52,7 @@ const handlePrintText = (e) => {
   <div class="">
     <div class="v-bind v-on">
       <!-- v-bind:value = :value -->
+      <!-- sử dụng v-bind  -->
       <div>Kết hợp v-bind và v-on sẽ tạo đk liên kết 2 chiều</div>
       <input :value="text" @input="handlePrintText" placeholder="Type here" />
       <p>{{ text }}</p>

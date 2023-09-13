@@ -19,15 +19,18 @@ import Home from "./components/HelloWorld.vue";
 import About from "./components/About.vue";
 import NotFound from "./NotFound.vue";
 import LifeCycle from "./components/LifeCycle.vue";
+import Watcher from "./components/Watcher.vue";
+import Event from "./components/Event.vue";
 
 const routes = {
   "/": Home,
   "/about": About,
   "/life-cycle": LifeCycle,
+  "/watcher": Watcher,
+  "/event": Event,
 };
 
 const currentPath = ref(window.location.hash);
-
 window.addEventListener("hashchange", () => {
   currentPath.value = window.location.hash;
 });
@@ -40,7 +43,8 @@ const currentView = computed(() => {
 <template>
   <div class="nav-container">
     <a href="#/">Home</a> | <a href="#/about">About</a> |
-    <a href="#/life-cycle">LifeCycle</a> |
+    <a href="#/life-cycle">LifeCycle</a> | <a href="#/watcher">Watcher</a> |
+    <a href="#/event">Event</a> |
     <a href="#/non-existent-path">Broken Link</a>
   </div>
   <div class="content-container">

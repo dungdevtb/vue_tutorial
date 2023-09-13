@@ -6,7 +6,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, onMounted, onUpdated, onUnmounted } from "vue";
+import { ref, onMounted, onUpdated, onUnmounted, watch } from "vue";
 
 //Creation - Được chạy khi component của bạn được khởi tạo
 //onMounted: các element đã được hiển thị và khai báo cho phép truy cập DOM
@@ -39,18 +39,47 @@ onUnmounted(() => {
   console.log("Element Unmounted");
   clearInterval(intervalId);
 });
+
+// -------------------------------
+// WATCHER
+const todoId = ref(1);
+const todoData = ref(null);
+const fetchData = async () => {
+  todoData.value = null;
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  );
+  todoData.value = await res.json();
+};
+
+fetchData();
+watch(todoId, fetchData);
+// đối số đầu tiên của watch là 1 đối tượng cần theo dõi có thể là :ref, reactive obj, hàm ,....
 </script>
 
 <template lang="">
   <div class="vue_container">
-    <h3>Life Cycle VUE</h3>
-    <p ref="pElementRef">hello</p>
+    <div class="life_cycle">
+      <h3>Life Cycle VUE</h3>
+      <p ref="pElementRef">hello</p>
 
-    <h3>onUpdated</h3>
-    <button id="count" @click="count++">{{ count }}</button>
+      <h3>OnUpdated</h3>
+      <button id="count" @click="count++">{{ count }}</button>
+    </div>
 
-    <h1></h1>
+    <div class="watcher">
+      <h3>Watcher</h3>
+      <p>Todo Id: {{ todoId }}</p>
+      <button @click="todoId++">Fetch next todo:</button>
+      <p v-if="!todoData">Loading...</p>
+      <p v-else>{{ todoData }}</p>
+    </div>
   </div>
 </template>
 
-<style lang=""></style>
+<style lang="scss">
+.vue_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+</style>
